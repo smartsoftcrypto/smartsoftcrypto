@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartSoftCrypto - Smart Solutions, Secure Transactions</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #87CEEB 0%, #ffffff 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #4682B4;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #4682B4;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #87CEEB, #4682B4);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #4682B4;
+            border: 2px solid #4682B4;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 50%, #ffffff 100%);
+            padding: 120px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-50px, -50px) rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            color: #4682B4;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Market Data Section */
+        .market-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 60px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .crypto-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-left: 5px solid #87CEEB;
+        }
+
+        .crypto-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .crypto-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .crypto-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .crypto-symbol {
+            background: #87CEEB;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .crypto-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #4682B4;
+            margin-bottom: 0.5rem;
+        }
+
+        .crypto-change {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .crypto-change.positive {
+            color: #22c55e;
+        }
+
+        .crypto-change.negative {
+            color: #ef4444;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #4682B4;
+            font-size: 1.2rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 60px 0;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #4682B4;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: linear-gradient(45deg, #4682B4, #87CEEB);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input {
+            padding: 1rem;
+            border: none;
+            border-radius: 25px;
+            min-width: 300px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            padding: 1rem 2rem;
+            background: white;
+            color: #4682B4;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            animation: modalSlide 0.3s ease;
+        }
+
+        @keyframes modalSlide {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4682B4;
+        }
+
+        .success-message,
+        .error-message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Mobile Responsiveness */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .newsletter-form input {
+                min-width: auto;
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .refresh-btn {
+            background: #4682B4;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            margin: 1rem auto;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: #5a9fd4;
+            transform: scale(1.05);
+        }
+
+        .refresh-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">SmartSoftCrypto</a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#markets">Markets</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <div class="auth-buttons">
+                <button class="btn btn-secondary" onclick="openModal('loginModal')">Login</button>
+                <button class="btn btn-primary" onclick="openModal('registerModal')">Sign Up</button>
+            </div>
+            
+            <div class="mobile-menu" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>SmartSoftCrypto</h1>
+                    <p class="tagline">Smart Solutions, Secure Transactions</p>
+                    <p>Track cryptocurrency and forex markets in real-time with our comprehensive platform. Stay ahead of the market with professional-grade tools and insights.</p>
+                    <a href="#markets" class="btn btn-primary">Start Trading</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="markets" class="market-section">
+            <div class="container">
+                <h2 class="section-title">Live Market Data</h2>
+                <button class="refresh-btn" onclick="fetchMarketData()" id="refreshBtn">
+                    <i class="fas fa-sync-alt"></i> Refresh Data
+                </button>
+                
+                <div id="marketData" class="market-grid">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i> Loading market data...
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2 class="section-title">Why Choose SmartSoftCrypto?</h2>
+                <div class="features-grid">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Real-Time Data</h3>
+                        <p>Get live cryptocurrency and forex data with automatic updates every 30 seconds</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Secure Platform</h3>
+                        <p>Bank-level security with encrypted data transmission and secure user authentication</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile Responsive</h3>
+                        <p>Access your portfolio and market data from any device, anywhere, anytime</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h3>Smart Alerts</h3>
+                        <p>Get notified about price movements and market opportunities instantly</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="container">
+                <h2>Stay Updated</h2>
+                <p>Subscribe to our newsletter for the latest market insights and trading tips</p>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" placeholder="Enter your email address" required id="newsletterEmail">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <p>&copy; 2025 SmartSoftCrypto. All rights reserved.</p>
+            <p>Contact: <a href="mailto:smartsoftcrypto@gmail.com" style="color: #87CEEB;">smartsoftcrypto@gmail.com</a></p>
+            <p>Domain: smartsoftcrypto.com</p>
+            <button class="btn btn-primary" onclick="openModal('contactModal')" style="margin-top: 1rem;">Contact Us</button>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem;">
+                Don't have an account? <a href="#" onclick="closeModal('loginModal'); openModal('registerModal')" style="color: #4682B4;">Sign up</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Create Account</h2>
+            <form onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label for="registerName">Full Name:</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email:</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password:</label>
+                    <input type="password" id="registerPassword" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem;">
+                Already have an account? <a href="#" onclick="closeModal('registerModal'); openModal('loginModal')" style="color: #4682B4;">Login</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('contactModal')">&times;</span>
+            <h2>Contact Us</h2>
+            <form onsubmit="handleContact(event)">
+                <div class="form-group">
+                    <label for="contactName">Name:</label>
+                    <input type="text" id="contactName" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">Email:</label>
+                    <input type="email" id="contactEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactSubject">Subject:</label>
+                    <input type="text" id="contactSubject" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactMessage">Message:</label>
+                    <textarea id="contactMessage" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let marketDataInterval;
+        let userData = JSON.parse(localStorage.getItem('userData')) || null;
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchMarketData();
+            startAutoRefresh();
+            initScrollAnimations();
+            updateAuthUI();
+        });
+
+        // CoinGecko API integration
+        async function fetchMarketData() {
+            const refreshBtn = document.getElementById('refreshBtn');
+            const marketContainer = document.getElementById('marketData');
+            
+            refreshBtn.disabled = true;
+            refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Refreshing...';
+            
+            try {
+                const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=12&page=1&sparkline=false&price_change_percentage=24h');
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch market data');
+                }
+                
+                const data = await response.json();
+                displayMarketData(data);
+            } catch (error) {
+                console.error('Error fetching market data:', error);
+                marketContainer.innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Unable to load market data. Please try again later.
+                    </div>
+                `;
+            } finally {
+                refreshBtn.disabled = false;
+                refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh Data';
+            }
+        }
+
+        function displayMarketData(coins) {
+            const container = document.getElementById('marketData');
+            
+            container.innerHTML = coins.map(coin => `
+                <div class="crypto-card fade-in">
+                    <div class="crypto-header">
+                        <div class="crypto-name">${coin.name}</div>
+                        <div class="crypto-symbol">${coin.symbol.toUpperCase()}</div>
+                    </div>
+                    <div class="crypto-price">$${coin.current_price.toLocaleString()}</div>
+                    <div class="crypto-change ${coin.price_change_percentage_24h >= 0 ? 'positive' : 'negative'}">
+                        <i class="fas fa-${coin.price_change_percentage_24h >= 0 ? 'arrow-up' : 'arrow-down'}"></i>
+                        ${Math.abs(coin.price_change_percentage_24h).toFixed(2)}%
+                    </div>
+                    <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;">
+                        Market Cap: $${(coin.market_cap / 1e9).toFixed(2)}B
+                    </div>
+                </div>
+            `).join('');
+
+            // Trigger animation
+            setTimeout(() => {
+                const cards = container.querySelectorAll('.fade-in');
+                cards.forEach((card, index) => {
+                    setTimeout(() => card.classList.add('visible'), index * 100);
+                });
+            }, 100);
+        }
+
+        function startAutoRefresh() {
+            // Refresh market data every 30 seconds
+            marketDataInterval = setInterval(fetchMarketData, 30000);
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            // Clear any messages
+            const modal = document.getElementById(modalId);
+            const messages = modal.querySelectorAll('.success-message, .error-message');
+            messages.forEach(msg => msg.remove());
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Authentication functions
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Simulate login (in real app, this would be an API call)
+            setTimeout(() => {
+                userData = {
+                    name: email.split('@')[0],
+                    email: email,
+                    loginTime: new Date().toISOString()
+                };
+                
+                localStorage.setItem('userData', JSON.stringify(userData));
+                
+                showMessage('loginModal', 'Login successful! Welcome back.', 'success');
+                updateAuthUI();
+                
+                setTimeout(() => {
+                    closeModal('loginModal');
+                }, 1500);
+            }, 1000);
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                showMessage('registerModal', 'Passwords do not match!', 'error');
+                return;
+            }
+            
+            // Simulate registration
+            setTimeout(() => {
+                userData = {
+                    name: name,
+                    email: email,
+                    registrationTime: new Date().toISOString()
+                };
+                
+                localStorage.setItem('userData', JSON.stringify(userData));
+                
+                showMessage('registerModal', 'Account created successfully! Welcome to SmartSoftCrypto.', 'success');
+                updateAuthUI();
+                
+                setTimeout(() => {
+                    closeModal('registerModal');
+                }, 1500);
+            }, 1000);
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('userData');
+            userData = null;
+            updateAuthUI();
+            
+            // Show logout message
+            alert('You have been logged out successfully!');
+        }
+
+        function updateAuthUI() {
+            const authButtons = document.querySelector('.auth-buttons');
+            
+            if (userData) {
+                authButtons.innerHTML = `
+                    <span style="margin-right: 1rem; color: #4682B4;">Welcome, ${userData.name}</span>
+                    <button class="btn btn-secondary" onclick="handleLogout()">Logout</button>
+                `;
+            } else {
+                authButtons.innerHTML = `
+                    <button class="btn btn-secondary" onclick="openModal('loginModal')">Login</button>
+                    <button class="btn btn-primary" onclick="openModal('registerModal')">Sign Up</button>
+                `;
+            }
+        }
+
+        // Contact form
+        function handleContact(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const subject = document.getElementById('contactSubject').value;
+            const message = document.getElementById('contactMessage').value;
+            
+            // Simulate sending email
+            setTimeout(() => {
+                showMessage('contactModal', 'Thank you for your message! We will get back to you soon.', 'success');
+                
+                // Clear form
+                document.getElementById('contactName').value = '';
+                document.getElementById('contactEmail').value = '';
+                document.getElementById('contactSubject').value = '';
+                document.getElementById('contactMessage').value = '';
+                
+                setTimeout(() => {
+                    closeModal('contactModal');
+                }, 2000);
+            }, 1000);
+        }
+
+        // Newsletter subscription
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('newsletterEmail').value;
+            
+            // Simulate subscription
+            setTimeout(() => {
+                alert('Thank you for subscribing to our newsletter!');
+                document.getElementById('newsletterEmail').value = '';
+            }, 500);
+        }
+
+        // Utility function to show messages
+        function showMessage(modalId, message, type) {
+            const modal = document.getElementById(modalId);
+            const existingMessage = modal.querySelector('.success-message, .error-message');
+            
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `${type}-message`;
+            messageDiv.innerHTML = message;
+            
+            const form = modal.querySelector('form');
+            form.parentNode.insertBefore(messageDiv, form);
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Scroll animations
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Handle page visibility change to pause/resume auto-refresh
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                if (marketDataInterval) {
+                    clearInterval(marketDataInterval);
+                }
+            } else {
+                startAutoRefresh();
+                fetchMarketData(); // Refresh immediately when page becomes visible
+            }
+        });
+
+        // Error handling for network issues
+        window.addEventListener('online', function() {
+            console.log('Connection restored');
+            fetchMarketData();
+        });
+
+        window.addEventListener('offline', function() {
+            console.log('Connection lost');
+            const marketContainer = document.getElementById('marketData');
+            const offlineMessage = document.createElement('div');
+            offlineMessage.className = 'error-message';
+            offlineMessage.innerHTML = '<i class="fas fa-wifi"></i> Connection lost. Please check your internet connection.';
+            marketContainer.appendChild(offlineMessage);
+        });
+
+        // Keyboard navigation for modals
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
+
+        // Form validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function validatePassword(password) {
+            return password.length >= 6;
+        }
+
+        // Add real-time validation to forms
+        document.addEventListener('DOMContentLoaded', function() {
+            const emailInputs = document.querySelectorAll('input[type="email"]');
+            const passwordInputs = document.querySelectorAll('input[type="password"]');
+            
+            emailInputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.value && !validateEmail(this.value)) {
+                        this.style.borderColor = '#ef4444';
+                    } else {
+                        this.style.borderColor = '#e1e1e1';
+                    }
+                });
+            });
+            
+            passwordInputs.forEach(input => {
+                if (input.id !== 'confirmPassword') {
+                    input.addEventListener('blur', function() {
+                        if (this.value && !validatePassword(this.value)) {
+                            this.style.borderColor = '#ef4444';
+                        } else {
+                            this.style.borderColor = '#e1e1e1';
+                        }
+                    });
+                }
+            });
+            
+            // Confirm password validation
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            if (confirmPasswordInput) {
+                confirmPasswordInput.addEventListener('blur', function() {
+                    const password = document.getElementById('registerPassword').value;
+                    if (this.value && this.value !== password) {
+                        this.style.borderColor = '#ef4444';
+                    } else {
+                        this.style.borderColor = '#e1e1e1';
+                    }
+                });
+            }
+        });
+
+        // Performance optimization: lazy load images if any are added
+        function lazyLoadImages() {
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        }
+
+        // Add loading states to buttons
+        function addLoadingState(button, originalText) {
+            button.disabled = true;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            
+            setTimeout(() => {
+                button.disabled = false;
+                button.innerHTML = originalText;
+            }, 2000);
+        }
+
+        // Track user interactions for analytics (placeholder)
+        function trackEvent(eventName, data) {
+            console.log('Event tracked:', eventName, data);
+            // In production, this would send data to analytics service
+        }
+
+        // Add event tracking to key interactions
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.btn-primary')) {
+                trackEvent('button_click', { button: e.target.textContent });
+            }
+            if (e.target.matches('.crypto-card')) {
+                trackEvent('crypto_card_click', { crypto: e.target.querySelector('.crypto-name').textContent });
+            }
+        });
+
+        // Service Worker registration for PWA capabilities (optional)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                // Uncomment the next lines if you want to add PWA functionality
+                // navigator.serviceWorker.register('/sw.js')
+                //     .then(registration => console.log('SW registered: ', registration))
+                //     .catch(registrationError => console.log('SW registration failed: ', registrationError));
+            });
+        }
+
+        // Add tooltips for better UX
+        function initTooltips() {
+            const tooltipElements = document.querySelectorAll('[data-tooltip]');
+            
+            tooltipElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'tooltip';
+                    tooltip.textContent = this.dataset.tooltip;
+                    tooltip.style.cssText = `
+                        position: absolute;
+                        background: #333;
+                        color: white;
+                        padding: 0.5rem;
+                        border-radius: 4px;
+                        font-size: 0.8rem;
+                        z-index: 1000;
+                        pointer-events: none;
+                        opacity: 0;
+                        transition: opacity 0.3s ease;
+                    `;
+                    
+                    document.body.appendChild(tooltip);
+                    
+                    const rect = this.getBoundingClientRect();
+                    tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
+                    tooltip.style.top = rect.top - tooltip.offsetHeight - 5 + 'px';
+                    
+                    setTimeout(() => tooltip.style.opacity = '1', 10);
+                    
+                    this._tooltip = tooltip;
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    if (this._tooltip) {
+                        this._tooltip.remove();
+                        this._tooltip = null;
+                    }
+                });
+            });
+        }
+
+        // Initialize tooltips when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initTooltips);
+
+        // Add search functionality for crypto cards
+        function initSearch() {
+            const searchInput = document.createElement('input');
+            searchInput.type = 'text';
+            searchInput.placeholder = 'Search cryptocurrencies...';
+            searchInput.style.cssText = `
+                width: 100%;
+                max-width: 400px;
+                padding: 1rem;
+                margin: 2rem auto;
+                display: block;
+                border: 2px solid #e1e1e1;
+                border-radius: 25px;
+                font-size: 1rem;
+                transition: border-color 0.3s ease;
+            `;
+            
+            const marketSection = document.querySelector('.market-section .container');
+            const refreshBtn = document.getElementById('refreshBtn');
+            marketSection.insertBefore(searchInput, refreshBtn.nextSibling);
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const cryptoCards = document.querySelectorAll('.crypto-card');
+                
+                cryptoCards.forEach(card => {
+                    const name = card.querySelector('.crypto-name').textContent.toLowerCase();
+                    const symbol = card.querySelector('.crypto-symbol').textContent.toLowerCase();
+                    
+                    if (name.includes(searchTerm) || symbol.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // Initialize search after first data load
+        setTimeout(initSearch, 2000);
+    </script>
+</body>
+</html>
